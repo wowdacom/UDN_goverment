@@ -1,7 +1,11 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Indicator color="#bf2923"></Indicator>
+    <Head-Bar head-color="#fff" icon-color="#000">
+      <a slot="logo" href="https://vision.udn.com/" target="_blank"><img class="other_logo" src="../static/visual-logo.png" alt="聯合報系願景工程"></a>
+      <a href="https://udn.com">聯合新聞網</a>
+      <a href="https://udn.com">聯合新聞網2</a>
+    </Head-Bar>
   </div>
 </template>
 
