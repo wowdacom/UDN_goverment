@@ -22,6 +22,9 @@
       <p><span class="highlight">警政系統</span>則有民眾的不良素行與前科。</p>
       <p><br></p>
       <p>更別說，<span class="highlight">衛福部</span>依法有強制納保的全民健保資料庫，你曾補了哪顆牙，或不欲人知的隱疾，政府都知道。如此完善的健康資料庫，被製業巨頭視為全球罕有的「研發新藥的資料金礦」。</p>
+      <DynamicDigit unit="億元" :amount="330">
+        <div><p>2017年台灣數位廣告量330億元</p></div>
+      </DynamicDigit>
       <div class="number-ani-wrapper">
         <div class="dynamic-number">
           超過<span class="number" ref="aniNumber1" >{{ spotLight1.number }}</span>次
@@ -193,6 +196,7 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import DynamicDigit from './components/DynamicDigit.vue'
 import { setInterval, clearInterval } from 'timers';
 import { TweenLite } from "gsap";
 
@@ -248,7 +252,8 @@ export default {
     }
   },
   components: {
-    HelloWorld
+    HelloWorld,
+    DynamicDigit
   },
   mounted () {
     setInterval(()=>{
