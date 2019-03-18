@@ -6,8 +6,8 @@
       <a href="https://udn.com/upf/newmedia/udn_newmedia/">新媒體中心</a>
       <a href="https://udn.com/upf/newmedia/ubrandstudio/" target="_blanck">融媒體發展部</a>
     </head-bar>
-    <cover :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
-      <h1>「老大哥」回來了？<br/>政府是數位隱私的最大威脅</h1>
+    <cover position="leftCenter" :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
+      <h1 style="color: white; font-weight: bolder">「老大哥」回來了？<br/>政府是數位隱私的最大威脅</h1>
     </cover>
     <content-container>
       <p><br></p>
@@ -22,6 +22,30 @@
       <p><span class="highlight">警政系統</span>則有民眾的不良素行與前科。</p>
       <p><br></p>
       <p>更別說，<span class="highlight">衛福部</span>依法有強制納保的全民健保資料庫，你曾補了哪顆牙，或不欲人知的隱疾，政府都知道。如此完善的健康資料庫，被製業巨頭視為全球罕有的「研發新藥的資料金礦」。</p>
+      <div class="number-ani-wrapper">
+        <div class="dynamic-number">
+          超過<span class="number" ref="aniNumber1" >{{ spotLight1.number }}</span>次
+        </div>
+        <div class="content">
+          {{ spotLight1.describe }}
+        </div>
+      </div>
+      <div class="number-ani-wrapper">
+        <div class="dynamic-number">
+          超過<span class="number" ref="aniNumber2" >{{ spotLight2.number }}</span>件
+        </div>
+        <div class="content">
+          {{ spotLight2.describe }}
+        </div>
+      </div>
+      <div class="number-ani-wrapper">
+        <div class="dynamic-number">
+          <span class="number" ref="aniNumber3" >{{ spotLight3.number }}</span>%以上
+        </div>
+        <div class="content">
+          {{ spotLight3.describe }}
+        </div>
+      </div>
     </content-container>
     <content-container>
       <p><br></p>
@@ -139,7 +163,7 @@
         <share></share>
         <logo use-ubrand="yes" use-vision='yes'>
           <div class="logo">
-            <a href="https://udn.com/news/index" target="_blank"><img src="https://udn.com/upf/newmedia/image/20180829Logo/logo_news2.jpg"></a>
+            <!-- <a href="https://udn.com/news/index" target="_blank"><img src="https://udn.com/upf/newmedia/image/20180829Logo/logo_news2.jpg"></a> -->
           </div>         
         </logo>
         <p><br></p>
@@ -169,6 +193,8 @@
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
+import { setInterval, clearInterval } from 'timers';
+import { TweenLite } from "gsap";
 
 export default {
   name: 'app',
@@ -205,29 +231,67 @@ export default {
           event1: '行車軌跡',
           event2: '政府用作分析外，可拿來追蹤個人行蹤'
         },
-      ] 
+      ],
+      spotLight1: {
+        number: 65000,
+        describe: '2015年-2016年，共有11個政府機關向網路業者聲請65000多次網路個人資料'
+      },
+      spotLight2: {
+        number: 20000,
+        describe: '每年通訊監察（對人民監聽）案件量超過20000件'
+      },
+      spotLight3: {
+        number: 95,
+        describe: '檢警調辦案單位占總請求數95%以上'
+      }
+
     }
   },
   components: {
     HelloWorld
+  },
+  mounted () {
+    setInterval(()=>{
+      this.switchValue()
+    }, 1500)
   }
 }
 </script>
 
 <style lang="scss">
+@import './assets/UdnFontSize.css';
+@import './assets/reset.css';
+
 html, body {
   margin: 0;
+  
 }
 
 #app {
+  font-family: Arial, "微軟正黑體", sans-serif;
   .highlight {
     background-color: #ffce0c;
+    font-weight: 900;
+  }
+  .number-ani-wrapper {
+    font-weight: bolder;
+    .dynamic-number {
+      color: #4356ff;
+      .number {
+        font-size: 50px;
+      }
+    }
+    .content {
+
+    }
   }
   .department-block {
     .title {
 
     }
     .event-lists {
+      list-style: none;
+      border-left: solid 1px black;
       .list {
 
       }

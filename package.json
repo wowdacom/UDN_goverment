@@ -10,10 +10,13 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-brands-svg-icons": "^5.7.2",
     "@fortawesome/vue-fontawesome": "^0.1.5",
+    "bootstrap": "^4.3.1",
+    "bootstrap-vue": "^2.0.0-rc.15",
+    "gsap": "^2.1.2",
     "lodash.debounce": "^4.0.8",
     "lodash.throttle": "^4.1.1",
     "udn-newmedia-utils": "^1.1.0",
-    "vue": "^2.6.6",
+    "vue": "^2.6.9",
     "vuex": "^3.0.1"
   },
   "devDependencies": {
