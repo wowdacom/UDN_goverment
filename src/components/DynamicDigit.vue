@@ -31,6 +31,10 @@ export default {
       type: String,
       default: '#f6f6f6',
     },
+    countNumber: {
+      type: Number,
+      default: 1
+    }
   },
   data() {
     return {
@@ -40,11 +44,12 @@ export default {
   },
   methods: {
     digitIncrement() {
+      let vm = this
       setInterval(() => {
-        if (this.count === this.amount) {
+        if (vm.count === vm.amount) {
           clearInterval();
         } else {
-          this.count++;
+          vm.count += vm.countNumber;
         }
       }, 0.003);
     },

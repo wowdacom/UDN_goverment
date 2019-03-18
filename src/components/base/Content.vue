@@ -19,7 +19,7 @@ export default {
   width: 100%;
   padding: 0px 15px;
   margin: 0 auto;
-  background-color: #fff;
+  background-color: inherit;
   @media (min-width: 768px) and (max-width: 1023px) {
     padding: 64px 100px;
   }

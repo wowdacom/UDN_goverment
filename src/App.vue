@@ -22,15 +22,15 @@
       <p><span class="highlight">警政系統</span>則有民眾的不良素行與前科。</p>
       <p><br></p>
       <p>更別說，<span class="highlight">衛福部</span>依法有強制納保的全民健保資料庫，你曾補了哪顆牙，或不欲人知的隱疾，政府都知道。如此完善的健康資料庫，被製業巨頭視為全球罕有的「研發新藥的資料金礦」。</p>
-      <DynamicDigit unit="次" :amount="65000">
+      <DynamicDigit :countNumber="100" unit="次" :amount="65000">
         <span slot="title">超過</span>
         <div><p slot="description">2015年-2016年，共有11個政府機關向網路業者聲請65000多次網路個人資料</p></div>
       </DynamicDigit>
-      <DynamicDigit unit="次" :amount="20000">
+      <DynamicDigit :countNumber="50" unit="件" :amount="20000">
         <span slot="title">超過</span>
         <div><p>每年通訊監察（對人民監聽）案件量超過20000件</p></div>
       </DynamicDigit>
-      <DynamicDigit unit="%以上" :amount="95">
+      <DynamicDigit :countNumber="1" unit="%以上" :amount="95">
         <div><p>檢警調辦案單位占總請求數95%以上</p></div>
       </DynamicDigit>
     </content-container>
@@ -293,11 +293,12 @@ html, body {
   p {
     margin: 0;
   }
+  
 }
 
 #app {
   font-family: Arial, "微軟正黑體", sans-serif;
-  background-color: #f6f6f6;
+  background-color: rgb(246, 246, 246);
   .highlight {
     background-color: #ffce0c;
     font-weight: 900;
