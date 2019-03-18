@@ -2,7 +2,7 @@
   <div class="dynamic-digit-container" :style="{ backgroundColor: backgroundColor }">
     <div class="dynamic-digit-wrapper" :style="{ color: color }">
       <div class="dynamic-digit">
-        {{count}}
+        <slot class="title" name="title"></slot><span class="number">{{count}}</span>
         <span class="digit-unit">{{unit}}</span>
       </div>
     </div>
@@ -93,15 +93,22 @@ export default {
     display: flex;
 
     .dynamic-digit {      
-      font-size: 48px;
-      font-weight: bold;
-      @media screen and (min-width: 1024px) {
-        font-size: 64px;
+      
+      .number {
+        font-size: 48px;
+        font-weight: bold;
+        @media screen and (min-width: 1024px) {
+          font-size: 64px;
+        }
+      }
+      .title {
+      font-size: 18px;
+      }
+      .digit-unit {
+        font-size: 18px;
       }
     }
-    .digit-unit {
-      font-size: 18px;
-    }
+    
   }
 
   .description {

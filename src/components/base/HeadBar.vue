@@ -79,28 +79,18 @@ export default {
       anchorScroll: 0,
       titles: [
         {
-          id: 'metoo',
-          title: '誰讓性暴力者噤聲',
+          id: 'digital',
+          title: '數位人權在哪裡',
           isActive: true
         },
         {
-          id: 'office',
-          title: '權力與關係',
+          id: 'monitor',
+          title: '政府正在監控你',
           isActive: false
         },
         {
-          id: 'taxi',
-          title: '完美被害者迷思',
-          isActive: false
-        },
-        {
-          id: 'tram',
-          title: '停止責備受害者',
-          isActive: false
-        },
-        {
-          id: 'howToDo',
-          title: '你可以怎麼做',
+          id: 'test',
+          title: '數位隱私小測驗',
           isActive: false
         }
       ]
