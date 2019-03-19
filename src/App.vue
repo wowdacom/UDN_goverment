@@ -176,14 +176,16 @@
         <p><br></p>
         <p><br></p>
         <div class="survey-wrapper">
-          <div class="survey">
-            填寫問卷調查體驗
-          </div>
+          <a href="https://www.surveycake.com/s/KpQKN">
+            <div class="survey">
+              填寫問卷調查體驗
+            </div>
+          </a>
         </div>
       </content-container>
       <content-container>
         <p><br></p>
-        <share></share>
+        <share href="https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html"></share>
         <logo use-ubrand="yes" use-vision='yes'>
           <div class="logo">
             <!-- <a href="https://udn.com/news/index" target="_blank"><img src="https://udn.com/upf/newmedia/image/20180829Logo/logo_news2.jpg"></a> -->
@@ -276,9 +278,7 @@ export default {
     DynamicDigit
   },
   mounted () {
-    setInterval(()=>{
-      this.switchValue()
-    }, 1500)
+
   }
 }
 </script>
@@ -329,11 +329,18 @@ html, body {
     }
   }
   .survey-wrapper {
+    a, u {
+        text-decoration: none;
+        color: #5d5d5d;
+        &:hover {
+          color: black;
+        }
+    }
     .survey {
       margin: 0 auto;
       width: 343px;
       line-height: 73px;
-      border: solid 3px #f6f6f6;
+      border: solid 1px #5d5d5d;
       border-radius: 50px;
       text-align: center;
     }
