@@ -1,13 +1,8 @@
 <template>
   <div id="app">
     <indicator></indicator>
-    <head-bar>
-      <!-- <a slot="logo" href="https://vision.udn.com/"><img class="other_logo" src="./static/visual-logo.png" alt="聯合報願景工程"></a> -->
-      <a href="https://udn.com/upf/newmedia/udn_newmedia/">新媒體中心</a>
-      <a href="https://udn.com/upf/newmedia/ubrandstudio/" target="_blanck">融媒體發展部</a>
-    </head-bar>
-    <cover position="leftCenter" :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
-      <h1 style="color: white; font-weight: bolder">「老大哥」回來了？<br/>政府是數位隱私的最大威脅</h1>
+    <cover position="centerCenter" :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
+      <h3>政府就是洩漏個資的兇手</h3><h1>數位人權誰來把關？</h1>
     </cover>
     <content-container>
       <p><br></p>
@@ -209,7 +204,7 @@
         href4="https://udn.com/news/story/7266/3366615" :img4="require('../public/mob2_r004.jpg')" text4="國道ETC抓超速 法務部認有適法性疑慮" > 
       </Relate>
       <p><br></p>
-        <fb-comment></fb-comment>
+        <fb-comment href="https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html"></fb-comment>
       </content-container>
       <back-top></back-top>
     <foot></foot>
@@ -217,7 +212,7 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
 import DynamicDigit from './components/DynamicDigit.vue'
 import { setInterval, clearInterval } from 'timers';
 import { TweenLite } from "gsap";
@@ -274,7 +269,6 @@ export default {
     }
   },
   components: {
-    HelloWorld,
     DynamicDigit
   },
   mounted () {

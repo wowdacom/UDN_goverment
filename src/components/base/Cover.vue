@@ -1,6 +1,7 @@
 <template>
   <div class="Cover" :class="setProps('position')"
        :style="{ backgroundImage: 'url('+ srcRWD(setProps('src'), setProps('srcWeb')) +')' }">
+    <Header :links="navInfo"></Header>
     <div class="title_box">
       <slot></slot>
     </div>
@@ -18,6 +19,8 @@ import _debounce from 'lodash.debounce'
 import srcRWD from '@/mixin/srcRWD.js'
 import setProps from '@/mixin/setProps.js'
 import yesToBoolean from '@/mixin/yesToBoolean.js'
+import Header from '../Header.vue'
+
 export default {
   name: 'Cover',
   mixins: [srcRWD, setProps, yesToBoolean],
@@ -56,7 +59,22 @@ export default {
   },
   data () {
     return {
-      viewWidth: window.innerWidth
+      viewWidth: window.innerWidth,
+      navInfo: [{
+        id: 0,
+        title: '數位隱私變商品',
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/index.html'
+      },
+      {
+        id: 1,
+        title: '政府正在監控你',
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html'
+      },
+      {
+        id: 2,
+        title: '測驗透明人指數',
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/quiz/index.html'
+      }],
     }
   },
   methods: {
@@ -75,9 +93,12 @@ export default {
       console.error('請檢查 src / src-web 是否都有輸入 ex: <Cover src="{imgae src}" src-web="{image src-web}"></Cover>')
     }
   },
+  components: {
+    Header
+  },
   mounted () {
     window.addEventListener('resize', this.handle_resize)
-  }  
+  }
 }
 </script>
 
@@ -97,6 +118,41 @@ export default {
   }
   @media screen and (min-width: 1024px) {
     padding: 8.8888% 13.3333%;
+  }
+  .title_box {
+    color: #f57272;
+    -webkit-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+    
+    @media (min-width: 768px) {
+
+      }
+      @media screen and (min-width: 1025px){
+
+      }
+    h1 {
+      font-size: 28px;
+      line-height:2;
+      font-weight: 400;
+      letter-spacing: 5px;
+      @media (min-width: 768px) {
+        
+      }
+      @media screen and (min-width: 1025px){
+
+      }
+    }
+    h3 {
+      font-size: 18px;
+      font-weight: 200;
+      letter-spacing: 5px;
+      @media (min-width: 768px) {
+        letter-spacing: 8px;
+      }
+      @media screen and (min-width: 1025px){
+
+      } 
+    }
   }
 }
 // Props Position Class
@@ -169,4 +225,5 @@ export default {
     transform: translate(0, 5px)
   }
 }
+
 </style>

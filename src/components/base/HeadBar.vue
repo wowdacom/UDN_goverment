@@ -6,7 +6,7 @@
         <!-- <a href=""><img class="other_logo" src="../../static/otherlogo.jpg" alt=""></a> -->
         <slot name="logo"></slot>
       </div>
-      <div class="menu_box">
+      <div v-if="showMenu" class="menu_box">
         <div class="burger-icon" :class="{ 'burger-open': isMenuOpen }" @click="handle_Burger()">
           <span :style="{ backgroundColor: setProps('iconColor') }"></span>
           <span :style="{ backgroundColor: setProps('iconColor') }"></span>
@@ -17,12 +17,24 @@
     </div>
     <div class="menu_list" @click="handle_Burger()" :class="{'menu_list-show': showMenuList}">
       <div class="link_box">
-        <ul class="link_item" :style="{ color: setProps('iconColor') }">
-          <li @click.prevent="handleFreezeAnimation(item.title, item.id, index)" :class="{ active: item.isActive }" :key="item.id" v-for="(item, index) in titles">{{ item.title }}</li>
-        </ul>
+        <div class="link_item" :style="{ color: setProps('iconColor') }">
+          <slot></slot>
+        </div>
       </div>
     </div>
-
+    <nav v-if="anchorMenu.length > 0" class="scroll_nav" :class="{ 'nav_show': isNavShow }">
+      <div v-if="canNavScroll" class="nav_arrow nav_arrow-left"
+      @click="handle_nav_arrow('left')">
+        <i class="fa fa-chevron-left fa-1x" aria-hidden="true"></i>
+      </div>
+      <div class="nav_list" ref="navigator" :class="{'fix-padding': canNavScroll && !isIE}">
+        <span v-for="(dish) in anchorMenu" :key="dish.id" class="nav_list_item" :class="{ 'nav_list_item-active': dish.isActive }" @click.prevent="handle_scrollTo(dish.title, dish.id)">{{dish.title}}</span>
+      </div>
+      <div v-if="canNavScroll" class="nav_arrow nav_arrow-right"
+      @click="handle_nav_arrow('right')">
+        <i class="fa fa-chevron-right fa-1x" aria-hidden="true"></i>
+      </div>
+    </nav>
     <div class="scrollHint" v-show="showScrollHint" ref="scrollHinter">
       <span>Tip: Shift+滾輪滾動</span>
     </div>
@@ -50,23 +62,10 @@ export default {
     iconColor: {
       type: String,
       default: '#000'
-    },
-    isCorssing: {
-      type: Boolean,
-      default: false
-    },
-    animationIsFix: {
-      type: Boolean,
-      defautl: false
     }
   },
   data () {
     return {
-      moveTo: {
-        id: '',
-        title: '',
-        index: 0
-      },
       isIE: false,
       canNavScroll: false,
       header_top: 0,
@@ -76,24 +75,16 @@ export default {
       showMenuList: false,
       showScrollHint: false,
       anchorIndex: 0,
-      anchorScroll: 0,
-      titles: [
-        {
-          id: 'digital',
-          title: '數位人權在哪裡',
-          isActive: true
-        },
-        {
-          id: 'monitor',
-          title: '政府正在監控你',
-          isActive: false
-        },
-        {
-          id: 'test',
-          title: '數位隱私小測驗',
-          isActive: false
-        }
-      ]
+      anchorScroll: 0
+      // pass from anchor by vuex
+      // anchorMenu: [
+      //   {
+      //     "id": this.setId,
+      //     "title": this.setProps('title'),
+      //     "offsetTop": $(this.$el).offset().top,
+      //     "isActive": false
+      //   }
+      // ]
     }
   },
   computed: {
@@ -114,56 +105,7 @@ export default {
       'resetAnchorActive'
     ]),
     handle_scroll () {
-
-      let officePostion = this.$parent.$refs['animation-office'].$el.offsetTop
-      let taxiPostion = this.$parent.$refs['animation-taxi'].$el.offsetTop
-      let tramPosition = this.$parent.$refs['animation-tram'].$el.offsetTop
-      let howToDoPosition = this.$parent.$refs['howToDo'].$el.offsetTop
       let currentH = window.pageYOffset
-
-      if (currentH < officePostion - 48 ) {
-          this.titles.forEach((item, index)=>{
-            if(index === 0) {
-              item.isActive = true
-            } else {
-              item.isActive = false
-            }
-          })
-      } else if ( officePostion - 48 < currentH && currentH < taxiPostion - 48 ) {
-          this.titles.forEach((item, index)=>{
-            if(index === 1) {
-              item.isActive = true
-            } else {
-              item.isActive = false
-            }
-          })
-      } else if ( taxiPostion - 48 < currentH && currentH < tramPosition - 48 ) {
-          this.titles.forEach((item, index)=>{
-            if(index === 2) {
-              item.isActive = true
-            } else {
-              item.isActive = false
-            }
-          })
-      } else if ( tramPosition - 48 < currentH && currentH < howToDoPosition - 48 ) {
-          this.titles.forEach((item, index)=>{
-            if(index === 3) {
-              item.isActive = true
-            } else {
-              item.isActive = false
-            }
-          })
-      } else {
-          this.titles.forEach((item, index)=>{
-            if(index === 4) {
-              item.isActive = true
-            } else {
-              item.isActive = false
-            }
-          })
-      }
-
-
       if (currentH < 2) {
         this.header_top = 0
         this.isMenuOpen === false ? this.bar_color = 'transparent' : this.bar_color = this.setProps('headColor')
@@ -186,35 +128,14 @@ export default {
         this.handle_nav()
       }
     },
-    handleFreezeAnimation (title, id, index) {
-      let vm  = this
-      let callback = this.test
-      this.$set(this.moveTo, 'id', id)
-      this.$set(this.moveTo, 'index', index)
-      this.$set(this.moveTo, 'title', title)
-      if ( this.animationIsFix === false) {
-        this.$emit('freezeAnimation', false)
-      }
-      // this.$on('freezeAnimation', this.handle_scrollTo)
-    },
-    handle_scrollTo: _throttle(function () {
-      let id = this.moveTo.id
-      let index = this.moveTo.index
-      let title = this.moveTo.title
-      let vm = this
-
-      
-        $('html, body').animate({ scrollTop: $('#' + id).offset().top }, 1333, function() {
-          vm.$emit('freezeAnimation', true)
-        })
-      
-          // window.ga("send", {
-          //   "hitType": "event",
-          //   "eventCategory": "headbar",
-          //   "eventAction": "click",
-          //   "eventLabel": "[" + Utils.detectPlatform() + "] [" + document.querySelector('title').innerHTML + "] [" + title + "] [HeadBar 內滾點擊]"
-      // })
-
+    handle_scrollTo: _throttle(function (title, id) {
+      $('html, body').animate({ scrollTop: $('#' + id).offset().top - 85 }, 1333)
+      window.ga("newmedia.send", {
+        "hitType": "event",
+        "eventCategory": "headbar",
+        "eventAction": "click",
+        "eventLabel": "[" + Utils.detectPlatform() + "] [" + document.querySelector('title').innerHTML + "] [" + title + "] [HeadBar 內滾點擊]"
+      })
     }, 1000, {leading: true, trailing: false}),
     handle_nav () {
       let currentH = window.pageYOffset
@@ -261,12 +182,12 @@ export default {
           window.pageYOffset < 2 ? this.bar_color = 'transparent' : this.bar_color = this.setProps('headColor')
         }, 444)
       }
-      // window.ga("send", {
-      //   "hitType": "event",
-      //   "eventCategory": "hamburger",
-      //   "eventAction": "click",
-      //   "eventLabel": "[" + Utils.detectPlatform() + "] [" + document.querySelector('title').innerHTML + "] [hamburger]"
-      // })
+      window.ga("newmedia.send", {
+        "hitType": "event",
+        "eventCategory": "hamburger",
+        "eventAction": "click",
+        "eventLabel": "[" + Utils.detectPlatform() + "] [" + document.querySelector('title').innerHTML + "] [hamburger]"
+      })
     },
     handle_resize: _debounce(function () {
       this.isMenuOpen = false
@@ -285,14 +206,6 @@ export default {
       })
     }
   },
-  watch: {
-    isCorssing: function (newVal, oldVal) {
-        let vm = this
-        if(newVal === false) {
-          vm.handle_scrollTo()
-        }
-      }
-  },
   created () {
     if (Utils.detectIE()) {
       Utils.detectIE() < 16 ? this.isIE = true : this.isIE = false
@@ -300,7 +213,7 @@ export default {
   },
   mounted () {
     const vm = this
-    window.addEventListener('scroll', this.handle_scroll, {passive: true})
+    window.addEventListener('scroll', this.handle_scroll)
     window.addEventListener('resize', this.handle_resize)
     if (this.$slots.default !== undefined) {
       for (let i = 0; i < this.$slots.default.length; i++) {
@@ -390,16 +303,10 @@ export default {
   width: 100%;
   height: 48px;
   transition: transform 222ms ease-out, height 444ms linear;
+  color: red;
 }
 .header_open{
   height: 100vh;
-  @media (min-width: 768px) and (max-width: 1023px) {
-    height: 100vh;
-  }
-  @media screen and (min-width: 1024px) {
-    height: 48px;
-  }
-
 }
 .TheBar{
   position: relative;
@@ -552,7 +459,7 @@ export default {
     background-color: transparent;
     padding: 0;
   }
-  li {
+  a{
     flex-shrink: 0;
     position: relative;
     list-style: none;
@@ -569,16 +476,10 @@ export default {
     padding: 15px;
     color: inherit;
     text-decoration: none;
-    cursor: pointer;
     @media screen and (min-width: 1024px) {
       width: auto;
       border-bottom: none;
     }
-  }
-  .active {
-    font-weight: 900;
-    color: #ff4612;
-    border-bottom: solid 5px;
   }
 }
 // Scroll Nav
