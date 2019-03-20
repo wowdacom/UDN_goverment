@@ -1,7 +1,7 @@
 <template>
   <div class="backtop-section" @click="clickToTop">
     <div class="backtop-btn" :class="{ 'backtop-active': isActive}" :style="{ backgroundColor: setProps('arrowBoxColor') }">
-      <i class="fa fa-chevron-up fa-2x" aria-hidden="true" :style="{ color: setProps('arrowColor') }"></i>
+      <font-awesome-icon class="close" :icon="['fas', 'arrow-up']" size="2x"  aria-hidden="true" :style="{ color: setProps('arrowColor') }" />
     </div>
   </div>
 </template>
@@ -9,6 +9,12 @@
 <script>
 import setProps from '@/mixin/setProps.js'
 import Utils from 'udn-newmedia-utils'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+
+library.add(fas)
+
 export default {
   name: 'BackTop',
   mixins: [ setProps ],
@@ -44,12 +50,15 @@ export default {
     },
     handle_scroll () {
       let currentH = window.pageYOffset
-      if (currentH > window.innerHeight) {
+      if (currentH > window.innerHeight && currentH > 0) {
         this.isActive = false
       } else {
         this.isActive = true
       }
     }
+  },
+  components: {
+    'font-awesome-icon': FontAwesomeIcon
   },
   mounted () {
     window.addEventListener('scroll', this.handle_scroll)
@@ -63,13 +72,13 @@ export default {
 <style lang="scss" scoped>
 .backtop-section{
   position: fixed;
-  z-index: 9997;
+  z-index: 50;
   right: 10px;
   bottom: 10px;
   width: 45px;
   height: 45px;
   overflow: hidden;
-  opacity: .6;
+  opacity: .8;
   @media screen and (min-width: 1025px) {
     bottom: 3.5vh;
     right: 50%;

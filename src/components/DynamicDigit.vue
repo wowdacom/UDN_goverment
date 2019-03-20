@@ -49,9 +49,10 @@ export default {
         if (vm.count === vm.amount) {
           clearInterval();
         } else {
+          console.log("counting")
           vm.count += vm.countNumber;
         }
-      }, 0.003);
+      }, 0.005);
     },
   },
   mounted() {
@@ -77,10 +78,9 @@ export default {
     position: relative;
     width: 100%;
     text-align: left;
-    padding: 0 15px;
     margin: 0 auto;
     @media (min-width: 768px) and (max-width: 1023px) {
-      padding: 0 100px;
+
     }
     @media screen and (min-width: 1024px) {
       padding: 0;
@@ -89,16 +89,16 @@ export default {
 
   .dynamic-digit-wrapper, .description {
     width: 100%;
+    color: #8489b1;
     @media screen and (min-width: 1024px) {
       width: 800px;
-      margin: 0 auto;
     }
   }
   .dynamic-digit-wrapper {
     display: flex;
 
     .dynamic-digit {      
-      
+      line-height: 1;
       .number {
         font-size: 48px;
         font-weight: bold;

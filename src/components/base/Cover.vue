@@ -63,17 +63,17 @@ export default {
       navInfo: [{
         id: 0,
         title: '數位隱私變商品',
-        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/index.html'
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/'
       },
       {
         id: 1,
         title: '政府正在監控你',
-        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html'
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/government/'
       },
       {
         id: 2,
         title: '測驗透明人指數',
-        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/quiz/index.html'
+        url: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/quiz/'
       }],
     }
   },
@@ -105,7 +105,7 @@ export default {
 <style lang='scss' scoped>
 .Cover{
   position: relative;
-  z-index: 50;
+  z-index: 60;
   height: 100vh;
   display: flex;
   padding: 28.8888% 7.7777%;
@@ -123,7 +123,6 @@ export default {
     color: #f57272;
     -webkit-writing-mode: vertical-lr;
     writing-mode: vertical-lr;
-    
     @media (min-width: 768px) {
 
       }
@@ -131,10 +130,10 @@ export default {
 
       }
     h1 {
-      font-size: 28px;
       line-height:2;
-      font-weight: 400;
+      font-size: 36px;
       letter-spacing: 5px;
+      font-weight: 700;
       @media (min-width: 768px) {
         
       }
@@ -143,9 +142,9 @@ export default {
       }
     }
     h3 {
-      font-size: 18px;
       font-weight: 200;
-      letter-spacing: 5px;
+      font-size: 22px;
+      letter-spacing: 10px;
       @media (min-width: 768px) {
         letter-spacing: 8px;
       }

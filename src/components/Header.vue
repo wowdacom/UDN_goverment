@@ -1,8 +1,8 @@
 <template>
-  <div class="header-wrapper">
+  <div class="header-wrapper" :class="{'isShow': isShowMenu}">
     <div class="header">
       <div class="left">
-        <a href="." @click="handle_logoGA"><i class="udn-icon udn-icon-logo" :style="{ color: '#465362' }"></i></a>
+        <a href="." @click="handle_logoGA"><i class="udn-icon udn-icon-logo" :style="{ color: 'black' }"></i></a>
       </div>
       <div class="right" >
           <div class="menu-web">
@@ -78,9 +78,9 @@ export default {
     handle_scroll () {
       let currentH = window.pageYOffset
       if (currentH < 2) {
-        this.isExpandnd = true
+        this.isShowMenu = false
       } else {
-        this.isExpand = false
+        this.isShowMenu = true
       }
     }
   }
@@ -88,11 +88,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .header-wrapper {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
+    background-color: white;
+    transform: translateY(-100%);
+    transition: all 0.5s ease-in-out;
     .header {
       &::after {
         content: '';
@@ -115,6 +118,7 @@ export default {
       }
       .right {
         float: right;
+        max-height: 48px;
         .menu-web {
           display: none;
           @media (min-width: 768px) {
@@ -199,6 +203,7 @@ export default {
     }
   }
   .isShow {
+    transition: all 1s ease-in-out;
     transform: translateY(0);
   } 
 </style>
