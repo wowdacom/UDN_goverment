@@ -1,7 +1,7 @@
 <template>
   <div class="Cover" :class="setProps('position')"
        :style="{ backgroundImage: 'url('+ srcRWD(setProps('src'), setProps('srcWeb')) +')' }">
-    <Header :links="navInfo"></Header>
+    <!-- <Header :links="navInfo"></Header> -->
     <div class="title_box">
       <slot></slot>
     </div>
@@ -19,7 +19,7 @@ import _debounce from 'lodash.debounce'
 import srcRWD from '@/mixin/srcRWD.js'
 import setProps from '@/mixin/setProps.js'
 import yesToBoolean from '@/mixin/yesToBoolean.js'
-import Header from '../Header.vue'
+
 
 export default {
   name: 'Cover',
@@ -94,7 +94,7 @@ export default {
     }
   },
   components: {
-    Header
+
   },
   mounted () {
     window.addEventListener('resize', this.handle_resize)
@@ -134,6 +134,9 @@ export default {
       font-size: 36px;
       letter-spacing: 5px;
       font-weight: 700;
+      @media (min-width: 320px)  and (max-width: 374px) {
+        font-size: 26px;
+      }
       @media (min-width: 768px) {
         
       }
@@ -145,6 +148,9 @@ export default {
       font-weight: 200;
       font-size: 22px;
       letter-spacing: 10px;
+      @media (min-width: 320px) and (max-width: 374px) {
+        font-size: 16px;
+      }
       @media (min-width: 768px) {
         letter-spacing: 8px;
       }

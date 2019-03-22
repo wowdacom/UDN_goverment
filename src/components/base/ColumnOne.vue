@@ -83,13 +83,23 @@ export default {
   }
 }
 .description {
-  text-align: center;
+  margin: 0 auto;
+  text-align: left;
   margin-top: 5px;
   font-size: 17px;
   color: gray;
-  width: 100%;
+  max-width: 880px;
+  padding: 0px 15px;
   @media screen and (max-width: 767px) {
     font-size: 15px;
   }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    text-align: left;
+    padding: 0 100px;
+  }
+  @media screen and (min-width: 1024px) {
+    padding: 0px;
+  }
+  
 }
 </style>

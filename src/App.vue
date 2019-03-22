@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <indicator></indicator>
-    <cover position="centerCenter" :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
+    <Header :outLinkList="outLinkList" ></Header>
+    <cover :position="srcRWD('leftCenter', 'centerCenter')" :src="require('../public/mob2_cover.jpg')" :src-web="require('../public/web2_cover.jpg')">
       <h3>政府就是洩漏個資的兇手</h3><h1>數位人權誰來把關？</h1>
     </cover>
     <content-container>
@@ -18,10 +19,14 @@
       <p><br></p>
       <p><span class="highlight">警政系統</span>則有民眾的不良素行與前科。</p>
       <p><br></p>
-      <p>更別說，<span class="highlight">衛福部</span>依法有強制納保的全民健保資料庫，你曾補了哪顆牙，或不欲人知的隱疾，政府都知道。如此完善的健康資料庫，被製業巨頭視為全球罕有的「研發新藥的資料金礦」。</p>
+      <p><span class="highlight">衛福部</span>依法有強制納保的全民健保資料庫，你曾補了哪顆牙，或不欲人知的隱疾，政府都知道。如此完善的健康資料庫，被製業巨頭視為全球罕有的「研發新藥的資料金礦」。</p>
       <p><br></p>
       <p><br></p>
-      <DynamicDigit :countNumber="100" unit="次" :amount="65000">
+      
+      <p><br></p>
+      
+    </content-container>
+    <DynamicDigit :countNumber="100" unit="次" :amount="65000">
         <span slot="title">超過</span>
         <div><p slot="description">2015年-2016年，共有11個政府機關向網路業者聲請65000多次網路個人資料</p></div>
       </DynamicDigit>
@@ -34,10 +39,9 @@
       <DynamicDigit :countNumber="1" unit="%以上" :amount="95">
         <div><p>檢警調辦案單位占總請求數95%以上</p></div>
       </DynamicDigit>
-      <p><br></p>
-      <p style="font-size:18px;color: #888;text-align: right;">資料來源／2018台灣網路透明度報告</p>
-    </content-container>
+      
     <content-container>
+      <p style="font-size:18px;color: #888;margin: 20px 0;">資料來源／2018台灣網路透明度報告</p>
       <p><br></p>
       <p><br></p>
       <p><br></p>
@@ -72,13 +76,13 @@
       <p><br></p>
       <quote text='"「開放政府」須建立索取用戶資料或下架內容的SOP，「刑事訴訟法」及「通訊保障監察法」都需要跟上時代。"'></quote>
       <p><br></p>
-      <p>台權會2018年出版<a href="">《2018台灣網路透明度報告》</a>，從2015年至2016年間，共有11個政府機關向LINE、Facebook等業者聲請65000多次網路個人資料，檢警調辦案單位占逾9成5，包括用戶門號、通訊者個資、地點、甚至通訊內容。</p>
+      <p>台權會2018年出版<a style="text-decoration: none;color: #4356ff;" href="https://www.tahr.org.tw/publication/2241" target="_blank">《2018台灣網路透明度報告》</a>，從2015年至2016年間，共有11個政府機關向LINE、Facebook等業者聲請65000多次網路個人資料，檢警調辦案單位占逾9成5，包括用戶門號、通訊者個資、地點、甚至通訊內容。</p>
       <p><br></p>
       <p>台權會的統計顯示，本土業者包括四大電信業者，對於政府要求提供資料的配合度幾乎百分之百；相較之下，跨境業者合作的比率只有6成5。例如，檢調單位向LINE台灣調閱一筆涉及盜刷的信用卡資料，僅憑一個帳號就要求業者提供使用者資料，遭LINE直接否決。</p>
       <p><br></p>
       <p><br></p>
       <p><br></p>
-      <h3>3000筆愛滋病患資料 網路上全都露</h3>
+      <h4>3000筆愛滋病患資料外洩 出包9年才發現</h4>
       <p><br></p>
       <p>2007年，北市聯合醫院驚傳3000筆愛滋病患的資料外洩，包含姓名、身分證字號、出生年月日等個資，甚至連疫調單編號全都露。事後聯醫追查，發現竟然只是有人準備投影片報告時，不慎將統計母體資料一併貼上檔案，導致有心人士一鍵就可取得病患資料。但聯合醫院直到2016年經告知才發現這件事情，花了一段時間才刪除已下載的資料。</p>
       <p><br></p>
@@ -94,7 +98,7 @@
       <p><br></p>
       <p><br></p>
       <p><br></p>
-      <h3>高教資料庫蒐集學生個資 教育部強調合法</h3>
+      <h4>高教資料庫蒐集學生個資 教育部強調合法</h4>
       <br>
       <p>最近教育部建立高教資料庫，蒐集學生及家長個資引發疑慮。教育部強調，資料來源合法，學生事後若拒絕學校使用資料，也可反映。受委託維護資料庫的台北科大看不到學生姓名、身分證字號等個人資料。</p>
       <p><br></p>
@@ -102,7 +106,7 @@
       <p><br></p>
       <p><br></p>
       <p><br></p>
-      <h3>警察外洩民眾個資 違法賣給徵信社</h3>
+      <h4>警察外洩民眾個資 違法賣給徵信社</h4>
       <p><br></p>
       <p>警察機關曾傳員警外洩民眾個資，甚至賣給徵信社的違法行為。警政署說，警察因職掌治安、偵防犯罪，得依職權利用警政資訊系統查詢相關個資，早年或因管制不夠嚴謹、或員警法治觀念不足，發生不少個資外洩事件，近年建立有效防杜機制，加強員警教育，情況已大幅減少。</p>
       <p><br></p>
@@ -111,7 +115,7 @@
       <p><br></p>
       <p><br></p>
       <p><br></p>
-      <h3>公部門資料庫門戶洞開</h3>
+      <h4>公部門資料庫門戶洞開</h4>
       <p><br></p>
       <div class="department-block" :key="item.title" v-for="item in departmentData">
         <h4 class="title">{{ item.title }}</h4>
@@ -131,9 +135,11 @@
       <p><br></p>
       <p>但是，如今《個資法》的主管機關是設在國發會之下，成立專案辦公室，這有很大的問題：</p>
       <p><br></p>
-      <p><b>1.國發會原本是規劃國家發展，尤其是經濟發展，這與保護民眾個資矛盾。</b></p>
-      <p><b>2.人事、預算都非獨立，也沒有法規定出權責，要人民如何相信？</b></p>
-      <p><b>3.個資法落實標準不一，過去法務部都推說資源不足、無能為力，現換成國發會，問題就會消失嗎？</b></p>
+      <ol>
+        <li>國發會原本是規劃國家發展，尤其是經濟發展，這與保護民眾個資矛盾。</li>
+        <li>人事、預算都非獨立，也沒有法規定出權責，要人民如何相信？</li>
+        <li>個資法落實標準不一，過去法務部都推說資源不足、無能為力，現換成國發會，問題就會消失嗎？</li>
+      </ol>
       <p><br></p>
       <quote text="何明諠說，政府一貫搪塞理由是：「中央行政機關組織基準法」卡在那，就是無法再有獨立機關了；但是「黨產會及促轉會等獨立機關不也是在這兩年成立了嗎？」"></quote>
       <p><br></p>
@@ -164,15 +170,18 @@
         <p><br></p>
         <p><br></p>
         <h3>迷思一</h3>
-        <h3>去識別化≠隱私保密</h3>
+        <h3>去識別無效 個資仍會全都露</h3>
         <p><br></p>
-        <p>何明諠說，<b>個資法限制個資使用，但對「學術研究／公共利益」都從寬解釋。</b>衛福部健保署在聲稱<a href="">去個人識別</a>處理後，將全民健保資料釋出到「健康資料加值研究中心」，作為「全民健保研究資料庫」，台權會提起行政訴訟及於前年提釋憲，要求民眾有權退出這項「健保目的外利用」。</p>
+        <p>何明諠說，<b>個資法限制個資使用，但對「學術研究／公共利益」都從寬解釋。</b>衛福部健保署在聲稱<span class="dictionary-btn" @click="handleDictionary">去個人識別 <font-awesome-icon :icon="['fas', 'info-circle']" /></span>
+          <span class="dictionary" v-show="isDictionaryShow">去識別化（de-identification）：簡單說，就是透過一些技術或遮蔽方式，使得一筆資料不再與特定個人有連結。最常見也最簡單的例子，像是提及人名時，時常可見以「哆拉○夢」這樣的方式進行表示（儘管這也時常是失敗的去識別化的案例）。針對比較大量的資料，常見的去識別化方式有Ｋ匿名法、差分隱私等，可讓兩個資料庫串連時，匿名性不會失敗。</span>
+        處理後，將全民健保資料釋出到「健康資料加值研究中心」，作為「全民健保研究資料庫」，台權會提起行政訴訟及於前年提釋憲，要求民眾有權退出這項「健保目的外利用」。</p>
         <p><br></p>
         <p><b>但衛福部及法院見解是對外提供都是匿名，名字與身分字號都去掉了，所以可以不經當事人同意供學者使用。</b></p>
         <p><br></p>
         <p>這樣，有道理嗎？</p>
         <p><br></p>
         <quote text="政治大學法律系教授劉宏恩說：「政府迷信『去名化』就是『去識別』，就是『隱私保密』，其實，根本不是有效保護個資的方法。」"></quote>
+        <p><br></p>
         <p>中研院資科所副研究員莊庭瑞指出，政府對公眾資料在自行聲明「已去個人識別處理」後，就轉為「特定目的以外的利用」。這作法實在太寬鬆。</p>
         <p><br></p>
         <p>更重要的是，目前去識別化作法仍可回溯追出你的身分。前立委黃淑英等人曾由健保資料庫申請出某群資料，在無姓名等資料下，仍能辨識出自己的健康資料。</p>
@@ -194,6 +203,7 @@
         <p><br></p>
         
       </content-container>
+      <Banner></Banner>
       <content-container style="background-color: white">
         <p><br></p>
         <p><br></p>
@@ -207,19 +217,15 @@
         </div>
         <p><br></p>
         <div class="share-wrapper">
-          <div class="share-wrapper-left">
-             <share href="https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html"></share>
-          </div>
-          <div class="share-wrapper-right">
-            <Logo></Logo>
-          </div>
+          <share href="https://udn.com/upf/newmedia/2019_data/digital_privacy/government/index.html"></share>
+          <Logo></Logo>
         </div>
         <p><br></p>
         <p><br></p>
         <Editor>
         <div>採訪團隊：蕭白雪、梁玉芳、彭慧明、章凱閎、馮靖惠、張錦弘、陳雨鑫、陳金松、廖炳棋</div>
         <div>製作人：蔡佩蓉</div>
-        <div>影像：報系資料照</div>
+        <div>影像：林澔一、報系資料照、123RF</div>
         <div>視覺設計：張心慈、蘇士堯</div>
         <div>網頁製作：胡凈悟、楊若榆</div>
         <div>監製：林秀姿、潘如瑩、董谷音</div>
@@ -241,24 +247,50 @@
 </template>
 
 <script>
-import Logo from './components/Logo.vue'
+// import Logo from './components/Logo.vue'
 import DynamicDigit from './components/DynamicDigit.vue'
 import { setInterval, clearInterval } from 'timers';
 import { TweenLite } from "gsap";
+import srcRWD from './mixin/srcRWD.js'
+import Utils from 'udn-newmedia-utils'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { fas } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
+import Banner from './components/Banner.vue';
+import Logo from './components/Logo.vue';
+import Share from './components/Share.vue';
+import Header from './components/Header.vue'
+
+library.add(fas)
 
 export default {
   name: 'app',
   data () {
     return {
+       outLinkList: [
+        {
+          name: '數位隱私變商品',
+          link: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/',
+        },
+        {
+          name: '政府正在監控你',
+          link: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/government/',
+        },
+        {
+          name: '測驗透明人指數',
+          link: 'https://udn.com/upf/newmedia/2019_data/digital_privacy/quiz/',
+        },
+      ],
+      isDictionaryShow: false,
       departmentData: [
         {
           title: '內政部',
-          event1: '蒐集民眾身分證、戶籍地址',
+          event1: '擁有民眾身分證、戶籍地址資料',
           event2: '曾被外洩給詐騙集團或徵信社'
         },
         {
           title: '衛福部',
-          event1: '蒐集民眾健保醫療資料、家暴、愛滋等傳染疾病資料',
+          event1: '擁有民眾健保醫療資料、家暴、愛滋等傳染疾病資料',
           event2: '曾發生3000筆愛滋病患個資外洩事件'
         },
         {
@@ -278,7 +310,7 @@ export default {
         },
         {
           title: 'ETC',
-          event1: '行車軌跡',
+          event1: '蒐集行車軌跡紀錄',
           event2: '政府用作分析外，可拿來追蹤個人行蹤'
         },
       ],
@@ -299,7 +331,23 @@ export default {
   },
   components: {
     DynamicDigit,
-    Logo
+    Logo,
+    Banner,
+    Share,
+    Header,
+    'font-awesome-icon': FontAwesomeIcon
+  },
+  mixins: [srcRWD],
+  methods: {
+    handleDictionary () {
+      window.ga("newmedia.send", {
+        "hitType": "event",
+        "eventCategory": "dictionary",
+        "eventAction": "click",
+        "eventLabel": "[" + Utils.detectPlatform() + "] [" + document.querySelector('title').innerHTML + "] [小辭典]]"
+      })
+      this.isDictionaryShow = !this.isDictionaryShow;
+    }
   },
   mounted () {
 
@@ -314,6 +362,11 @@ export default {
 
 html, body {
   margin: 0;
+  ol {
+    li {
+      margin-left: 20px;
+    }
+  }
   p {
     margin: 0;
   }
@@ -344,9 +397,24 @@ html, body {
 #app {
   font-family: Arial, "微軟正黑體", sans-serif;
   background-color: rgb(246, 246, 246);
+  .dictionary-btn {
+    color: rgb(213, 54, 54);
+    cursor: pointer;
+  }
+  .dictionary {
+    display: block;
+    padding: 30px;
+    color: rgb(213, 54, 54);
+    padding: 45px;
+    margin: 25px 0;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.9;
+    border: solid 1px rgb(213, 54, 54);
+  }
   .highlight {
-    background-color: #ffce0c;
     font-weight: 900;
+    color: rgb(67, 86, 255);
   }
   .number-ani-wrapper {
     font-weight: bolder;
@@ -392,7 +460,11 @@ html, body {
         padding-left: 15px;
       }
       @media screen and (min-width: 1024px) {
-        padding-left: 20px;
+        line-height: 1.5;
+        border-left: 1px solid #c3bcbc;
+        padding-left: 15px;
+        color: #7e7e7e;
+        
       }
       .list {
         font-size: 15px;
@@ -402,10 +474,10 @@ html, body {
           font-size: 15px;
         }
         @media (min-width: 768px) {
-
+          font-size: 15px;
         }
         @media screen and (min-width: 1024px) {
-
+          font-size: 21px;
         }
       }
     }
@@ -432,17 +504,16 @@ html, body {
   .share-wrapper {
     vertical-align: top;
     margin: 30px 0;
-    &::after {
-      content: '';
-      display: block;
-      clear: both;
-    }
-    .share-wrapper-left {
-      margin-top: 5px;
-      float: left;
-    }
-    .share-wrapper-right {
-      float: right;
+    display: flex;
+    align-items: baseline;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      justify-content: space-between;
+      
+    } 
+    @media screen and (min-width: 1024px) {
+      justify-content: space-between;
+      flex-direction: row;
     }
   }
 }

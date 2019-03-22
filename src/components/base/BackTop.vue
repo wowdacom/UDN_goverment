@@ -1,7 +1,7 @@
 <template>
   <div class="backtop-section" @click="clickToTop">
     <div class="backtop-btn" :class="{ 'backtop-active': isActive}" :style="{ backgroundColor: setProps('arrowBoxColor') }">
-      <font-awesome-icon class="close" :icon="['fas', 'arrow-up']" size="2x"  aria-hidden="true" :style="{ color: setProps('arrowColor') }" />
+      <font-awesome-icon class="close" :icon="['fas', 'chevron-up']" size="2x"  aria-hidden="true" :style="{ color: setProps('arrowColor') }" />
     </div>
   </div>
 </template>

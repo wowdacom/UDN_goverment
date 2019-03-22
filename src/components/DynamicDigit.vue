@@ -78,11 +78,12 @@ export default {
     position: relative;
     width: 100%;
     text-align: left;
+    padding: 0px 15px;
     margin: 0 auto;
-    @media (min-width: 768px) and (max-width: 1023px) {
-
-    }
+    background-color: inherit;
     @media screen and (min-width: 1024px) {
+      width: 880px;
+      margin: 0 auto;
       padding: 0;
     }
   }
